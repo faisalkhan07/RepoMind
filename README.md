@@ -31,9 +31,9 @@ RepoMind lets you point it at any public GitHub repository, and then ask natural
 
 Retrieval quality was iteratively improved by:
 - Adding AST-based parent-class and docstring context to each chunk before embedding
-- Switching from a general-purpose embedding model to a code-specialized one
+- Switching from a general-purpose embedding model (`all-MiniLM-L6-v2`) to a code-specialized one (`CodeSearch-DistilRoBERTa`)
 
-This improved average match distance (lower = more similar) from ~1.30 to ~1.20 on test queries, and noticeably reduced hedging/uncertainty in generated answers.
+On test queries against the micrograd codebase, this reduced average match distance (lower = more similar) from ~1.27–1.31 to ~1.17–1.21 — roughly a 7-8% improvement — and noticeably reduced hedging/uncertainty in generated answers, with the LLM providing more complete, confident explanations grounded in the retrieved code.
 
 ## Setup
 
