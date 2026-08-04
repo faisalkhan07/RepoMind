@@ -2,3 +2,5 @@ venv/
 chroma_db/
 .env
 micrograd/
+repos/
+__pycache__/
