@@ -6,10 +6,13 @@ from rag_query import ask_question
 
 app = FastAPI()
 
-# Allow our React frontend (running on a different port) to call this API
+# Allow our React frontend (local dev + live Vercel deployment) to call this API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[
+        "http://localhost:5173",
+        "https://repomind-orpin.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
