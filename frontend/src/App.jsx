@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 
-const API_URL = 'http://localhost:8000'
+const API_URL = 'https://repomind-production-1bd3.up.railway.app'
 
 function App() {
   const [repoUrl, setRepoUrl] = useState('')
