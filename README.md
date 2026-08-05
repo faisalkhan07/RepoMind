@@ -2,6 +2,9 @@
 
 Ask questions about any GitHub codebase in plain English and get grounded, cited answers — powered by Retrieval-Augmented Generation (RAG).
 
+**Live demo:** [repomind-orpin.vercel.app](https://repomind-orpin.vercel.app)
+**API:** [repomind-production-1bd3.up.railway.app](https://repomind-production-1bd3.up.railway.app)
+
 ## What it does
 
 RepoMind lets you point it at any public GitHub repository, and then ask natural language questions about the code. Instead of hallucinating answers, it retrieves the actual relevant functions/classes from the codebase and grounds its response in real, cited source code (file + line number).
@@ -16,11 +19,17 @@ RepoMind lets you point it at any public GitHub repository, and then ask natural
 
 ## Tech stack
 
-- **Backend:** FastAPI, Python
-- **Embeddings:** sentence-transformers (CodeSearch-DistilRoBERTa)
-- **Vector database:** ChromaDB
-- **LLM:** Groq (Llama 3.1 8B Instant)
-- **Code parsing:** Python `ast` module
+**Backend:**
+- FastAPI, Python
+- sentence-transformers (CodeSearch-DistilRoBERTa) for embeddings
+- ChromaDB for vector storage
+- Groq (Llama 3.1 8B Instant) for generation
+- Python `ast` module for code parsing
+- Docker, deployed on Railway
+
+**Frontend:**
+- React (Vite)
+- Deployed on Vercel
 
 ## API endpoints
 
@@ -35,15 +44,24 @@ Retrieval quality was iteratively improved by:
 
 On test queries against the micrograd codebase, this reduced average match distance (lower = more similar) from ~1.27–1.31 to ~1.17–1.21 — roughly a 7-8% improvement — and noticeably reduced hedging/uncertainty in generated answers, with the LLM providing more complete, confident explanations grounded in the retrieved code.
 
-## Setup
+**Production debugging:** deploying this surfaced several real infrastructure issues worth noting — CORS configuration between separately-hosted frontend/backend, a missing `git` binary in the initial hosting environment (fixed via a custom Dockerfile), and a memory ceiling hit from loading the embedding model twice (fixed by sharing a single model instance across modules).
 
+## Local setup
+
+**Backend:**
 1. Clone this repo
 2. Create a virtual environment: `python -m venv venv`
 3. Activate it and install dependencies: `pip install -r requirements.txt`
-4. Add a `.env` file with your `GROQ_API_KEY`
+4. Add a `.env` file with your `GROQ_API_KEY` (see `.env.example`)
 5. Run the server: `uvicorn main:app --reload`
 6. Visit `http://127.0.0.1:8000/docs` to try it out
 
+**Frontend:**
+1. `cd frontend`
+2. `npm install`
+3. `npm run dev`
+4. Visit `http://localhost:5173`
+
 ## Status
 
-Backend complete. Web UI in progress.
+Live and fully deployed — backend on Railway, frontend on Vercel.
