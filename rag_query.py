@@ -8,7 +8,8 @@ load_dotenv()
 
 client_db = chromadb.PersistentClient(path="./chroma_db")
 client_llm = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-embedding_model = SentenceTransformer("flax-sentence-embeddings/st-codesearch-distilroberta-base")
+
+from embeddings import embedding_model
 
 
 def retrieve_chunks(question, collection_name, n_results=3):

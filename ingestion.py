@@ -2,11 +2,10 @@ import ast
 import os
 import subprocess
 import chromadb
-from sentence_transformers import SentenceTransformer
 
 # Load our code-specialized embedding model once, reused across calls
-embedding_model = SentenceTransformer("flax-sentence-embeddings/st-codesearch-distilroberta-base")
-
+# Load our code-specialized embedding model once, reused across calls
+from embeddings import embedding_model
 
 def extract_chunks_from_file(filepath):
     """Read a Python file and extract function/class chunks using AST, with parent-class context."""
