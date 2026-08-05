@@ -5,6 +5,9 @@ Ask questions about any GitHub codebase in plain English and get grounded, cited
 **Live demo:** [repomind-orpin.vercel.app](https://repomind-orpin.vercel.app)
 **API:** [repomind-production-1bd3.up.railway.app](https://repomind-production-1bd3.up.railway.app)
 
+![RepoMind demo](screenshots/ss1.png)
+![RepoMind demo](screenshots/ss2.png)
+
 ## What it does
 
 RepoMind lets you point it at any public GitHub repository, and then ask natural language questions about the code. Instead of hallucinating answers, it retrieves the actual relevant functions/classes from the codebase and grounds its response in real, cited source code (file + line number).
