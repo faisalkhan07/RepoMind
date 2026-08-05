@@ -1,3 +1,25 @@
+:root {
+  --bg: #EEEFE8;
+  --text-primary: #2A2A2A;
+  --text-secondary: #6B6B6B;
+  --accent: #FF3333;
+  --input-bg: #FAF7F2;
+  --border: #D8CFC5;
+  --button-bg: #2A2A2A;
+  --button-text: #FAF7F2;
+}
+
+[data-theme="dark"] {
+  --bg: #1A1A1A;
+  --text-primary: #EDEDED;
+  --text-secondary: #A0A0A0;
+  --accent: #FF5555;
+  --input-bg: #2A2A2A;
+  --border: #3A3A3A;
+  --button-bg: #EDEDED;
+  --button-text: #1A1A1A;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,16 +27,48 @@
 }
 
 body {
-  background: #EEEFE8;
+  background: var(--bg);
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
-  color: #2A2A2A;
+  color: var(--text-primary);
+  transition: background 0.2s, color 0.2s;
 }
 
 .app {
   max-width: 700px;
   margin: 0 auto;
   padding: 60px 24px;
+  position: relative;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  padding: 0;
+  z-index: 100;
+}
+
+.theme-toggle:hover {
+  background: var(--accent);
+  transform: scale(1.08);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: #FFFFFF;
+  flex-shrink: 0;
 }
 
 .header {
@@ -25,7 +79,7 @@ body {
 .header h1 {
   font-family: 'Anton', sans-serif;
   font-size: 56px;
-  color: #FF3333;
+  color: var(--accent);
   letter-spacing: 1px;
   line-height: 1;
 }
@@ -34,7 +88,7 @@ body {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6B6B6B;
+  color: var(--text-secondary);
   margin-top: 12px;
   font-weight: 500;
 }
@@ -49,53 +103,56 @@ body {
 input {
   flex: 1;
   padding: 14px 16px;
-  border: 1px solid #D8CFC5;
+  border: 1px solid var(--border);
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
-  background: #FAF7F2;
-  color: #2A2A2A;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 input::placeholder {
-  color: #A39B8F;
+  color: var(--text-secondary);
 }
 
 input:focus {
   outline: none;
-  border-color: #FF3333;
+  border-color: var(--accent);
 }
 
 button {
   padding: 14px 20px;
-  background: #2A2A2A;
-  color: #FAF7F2;
+  background: var(--button-bg);
+  color: var(--button-text);
   border: none;
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
 
 button:hover {
-  background: #FF3333;
+  background: var(--accent);
+  color: #FAF7F2;
 }
 
 .status {
   text-align: center;
   font-size: 13px;
-  color: #6B6B6B;
+  color: var(--text-secondary);
   margin-bottom: 20px;
 }
 
 .answer-box {
-  background: #FAF7F2;
-  border: 1px solid #D8CFC5;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .answer-box h3,
@@ -103,7 +160,7 @@ button:hover {
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6B6B6B;
+  color: var(--text-secondary);
   margin-bottom: 10px;
   font-weight: 600;
 }
@@ -111,7 +168,7 @@ button:hover {
 .answer-box p {
   font-size: 15px;
   line-height: 1.6;
-  color: #2A2A2A;
+  color: var(--text-primary);
   white-space: pre-wrap;
 }
 
@@ -125,26 +182,27 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #FAF7F2;
-  border: 1px solid #D8CFC5;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 10px 14px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .source-number {
-  color: #FF3333;
+  color: var(--accent);
   font-weight: 500;
 }
 
 .source-name {
   font-weight: 500;
-  color: #2A2A2A;
+  color: var(--text-primary);
 }
 
 .source-location {
-  color: #6B6B6B;
+  color: var(--text-secondary);
   margin-left: auto;
   font-size: 12px;
 }
